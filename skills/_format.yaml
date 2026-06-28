@@ -1,0 +1,57 @@
+# kcp-hooks skill file format specification
+#
+# Place skill files in ~/.claude/skills/<name>.yaml
+# prompt-router.py auto-discovers all *.yaml files in that directory.
+#
+# Required fields: name, description
+# All other fields are optional but improve routing accuracy.
+
+name: skill-name                    # Unique identifier (used as file basename)
+version: 1.0.0                      # Semver — optional but useful for tracking changes
+
+description: |
+  One paragraph. What does this skill cover? What problem does it solve?
+  This is shown to the user when the skill is surfaced. Keep it under 200 chars
+  for clean display — prompt-router.py truncates at 120 in the sidebar.
+
+domain: your-domain                 # e.g. "backend", "frontend", "devops", "myproject"
+                                    # Used for domain affinity scoring and deduplication.
+                                    # Can be hierarchical: "myproject/auth"
+
+tags:
+  - keyword1                        # Short terms that describe this skill's topic
+  - keyword2                        # Used in scoring: tag matches weight 2x vs description 1x
+  - keyword3
+
+trigger_phrases:
+  - "phrase that reliably signals this skill is needed"
+  - "another trigger phrase"
+  # Trigger phrases are tokenized and scored like tags (2x weight).
+  # Use phrases a user would actually type when they need this skill.
+
+see_also:
+  - other-skill-name                # Skills to cross-surface when this one matches
+                                    # Cross-domain penalty does not apply to see_also links
+
+instructions: |
+  # Skill Title
+
+  The actual content loaded into context when this skill is triggered.
+  This is what Claude reads — make it useful, not just descriptive.
+
+  ## Key facts
+  - Fact 1
+  - Fact 2
+
+  ## Common patterns
+  ```bash
+  example command
+  ```
+
+  ## Gotchas
+  - Thing to watch out for
+
+examples:
+  - "example prompt that would trigger this skill"
+  - "another example"
+  # Examples are documentation only — not used in scoring.

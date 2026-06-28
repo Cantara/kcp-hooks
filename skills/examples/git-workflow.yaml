@@ -1,0 +1,47 @@
+name: git-workflow
+version: 1.0.0
+description: |
+  Git workflow patterns for this project — branching strategy, commit conventions,
+  PR process, and common gotchas.
+
+domain: general
+tags:
+  - git
+  - workflow
+  - branching
+  - commits
+  - pull-request
+
+trigger_phrases:
+  - "git commit"
+  - "create a branch"
+  - "open a PR"
+  - "merge strategy"
+  - "commit message"
+
+instructions: |
+  # Git Workflow
+
+  ## Branching
+  - `main` — production. Never commit directly.
+  - `feature/<name>` — new features
+  - `fix/<name>` — bug fixes
+
+  ## Commit messages
+  Format: `<type>: <short description>`
+  Types: feat, fix, refactor, docs, chore, test
+
+  ## PR process
+  1. Branch from main
+  2. Commit with conventional message
+  3. Push and open PR
+  4. Squash merge
+
+  ## Common gotchas
+  - Always `git pull --rebase` before pushing to avoid merge commits
+  - Never force-push to main
+
+examples:
+  - "create a feature branch for the login flow"
+  - "what's our commit message format?"
+  - "how do I open a PR?"
