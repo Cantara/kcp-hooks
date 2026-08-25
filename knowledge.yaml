@@ -1,0 +1,50 @@
+# kcp-hooks — root manifest
+kcp_version: "0.32"
+project: "kcp-hooks"
+version: "1.0.0"
+updated: "2026-08-25"
+
+trust:
+  provenance:
+    publisher: "Cantara — Norwegian Software Development Foundation"
+    publisher_url: https://github.com/Cantara
+
+freshness_policy:
+  max_age_days: 30
+  on_stale: warn
+
+description: >
+  Three passive Claude Code hooks — prompt-router (surfaces relevant skill
+  files from ~/.claude/skills/), prompt-recall (queries kcp-memory for
+  relevant past sessions on temporal signals), and prompt-hygiene (detects
+  influence tactics — emotional pressure, false urgency, authority
+  overload). All fire on UserPromptSubmit, complete in <200ms, zero
+  external API calls. Part of the Knowledge Context Protocol ecosystem.
+
+units:
+  - id: overview
+    path: README.md
+    intent: "What does kcp-hooks do, why hooks instead of CLAUDE.md, and how
+      do I install it?"
+    scope: global
+    audience: [human, agent, developer]
+    validated: "2026-08-25"
+    triggers:
+      [
+        kcp-hooks,
+        prompt router,
+        prompt recall,
+        prompt hygiene,
+        claude code hooks,
+        session amnesia,
+        install,
+      ]
+
+# foundation: kcp-hooks is built on the KCP ecosystem's conventions (skill
+# files, kcp-memory integration) but the spec itself doesn't depend on it.
+manifests:
+  - id: kcp-core
+    url: https://raw.githubusercontent.com/Cantara/knowledge-context-protocol/main/knowledge.yaml
+    label: "Knowledge Context Protocol — the spec kcp-hooks' skill-file conventions build on"
+    relationship: foundation
+    update_frequency: monthly
